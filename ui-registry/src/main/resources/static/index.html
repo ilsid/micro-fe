@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Micro Frontends</title>
+    <style type="text/css">
+	   .main_panel { 
+	    background: #eaecee;
+	    padding: 5px;
+	    border: solid 1px black;
+	    height: 90%; 
+	   }
+  	</style> 
+  	
+
+	<!-- Bootstrap CSS -->
+	<link type="text/css" rel="stylesheet" href="js/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="js/css/bootstrap-vue.css"/>
+	
+	<script src="js/lib/vue.min.js"></script>
+	<script src="js/lib/polyfill.min.js"></script>
+	<script src="js/lib/bootstrap-vue.js"></script>
+	<script src="js/lib/d3.js"></script>
+	<script src="js/lib/d3-selection-multi.v1.js"></script>
+
+    <script src="js/es6-polyfill.js"></script>
+    <script src="js/std-util.js"></script>
+	<script src="js/graph-util.js"></script>
+    <script src="js/event-router.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/registry.js"></script>
+	 	
+</head>
+<body>
+	<h2>UI Container</h2>
+	
+	<div id="tabContainer">
+		<b-tabs>
+  			<b-tab title="Main Panel" active>
+  				<div id="mainPanel" class="main_panel">
+					<b-container  style="width: 100%; height: 100%; margin-left: -1px; ">
+						<b-row>
+					        <b-col id ="colI"></b-col>
+					        <b-col id ="colA"></b-col>
+					        <b-col id ="colZ"></b-col>
+					    </b-row>	
+					</b-container>		
+				</div>
+  			</b-tab>
+  			<b-tab title="Admin Panel">
+    			<div id="adminPanel" style="height: 29px; ">
+ 					 <b-container>
+						<b-table striped hover :items="items" :fields="fields"></b-table>	
+   					 </b-container>
+   					 <script>
+   						 window.tabContainer = new Vue({
+		   				 	el: '#tabContainer',
+					        data: {
+							  items: [],
+							  fields: [
+					             { key: 'name', sortable: true },
+					             { key: 'url', sortable: false },
+					             { key: 'subscribedEvents', sortable: false },
+					             { key: 'publishedEvents', sortable: false }
+					          ]
+					        }
+					   	}) 
+	   				</script>
+			    </div>
+			  
+  			</b-tab>
+  		</b-tabs>
+	</div>
+	
+	<div id="graph">
+  		<svg id="graphView" width="800" height="600"></svg>
+    </div>	
+	
+</body>
+</html>
